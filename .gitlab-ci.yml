@@ -3,11 +3,9 @@ stages:
 
 deploy-dev:
   stage: deploy-dev
-  image:
-    name: mikefarah/yq:4
-    entrypoint: [""]
   before_script:
-    - yum install git
+    - wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq 
+    - chmod +x /usr/bin/yq
     - git config --global user.name gitlabci-bot
     - git config --global user.email gitlabci-bot@online-boutique.com 
   script:
