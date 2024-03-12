@@ -9,9 +9,7 @@ deploy-dev:
     - git config --global user.name gitlabci-bot
     - git config --global user.email gitlabci-bot@online-boutique.com 
   script:
-    - echo "$MS_NAME"
-    - echo "${MS_NAME}"
-    - echo "$MS_VERSION"
+    - echo "$TEST"
     - git checkout main
     - yq -i "(.images[] | select(.name == \"$MS_NAME\") | .newTag) = \"$MS_VERSION\"" overlays/dev/kustomization.yaml
     - git add overlays/dev/kustomization.yaml
