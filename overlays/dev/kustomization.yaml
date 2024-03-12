@@ -6,7 +6,7 @@ resources:
 images:
   - name: gcr-adservice
     newName: gcr.io/google-samples/microservices-demo/adservice
-    newTag: $MS_VERSION
+    newTag: v0.8.1
   - name: gcr-cartservice
     newName: gcr.io/google-samples/microservices-demo/cartservice
     newTag: v0.8.0
