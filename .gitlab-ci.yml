@@ -7,6 +7,7 @@ deploy-dev:
     name: mikefarah/yq:4
     entrypoint: [""]
   before_script:
+    - apt-get update; apt-get install git
     - git config --global user.name gitlabci-bot
     - git config --global user.email gitlabci-bot@online-boutique.com 
   script:
