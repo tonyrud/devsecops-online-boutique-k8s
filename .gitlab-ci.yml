@@ -8,7 +8,7 @@ deploy-dev:
     entrypoint: [""]
   before_script:
     - git config --global user.name gitlabci-bot
-	  - git config --global user.email gitlabci-bot@online-boutique.com 
+    - git config --global user.email gitlabci-bot@online-boutique.com 
   script:
     - git checkout main
     - yq -i "(.images[] | select(.name == \"$MS_NAME\") | .newTag) = \"$MS_VERSION\"" overlays/dev/kustomization.yaml
