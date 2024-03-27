@@ -4,4 +4,4 @@ resources:
 - block-nodeport-services.yaml
 - nodeport-constraint.yaml
 - block-privileged-containers.yaml
-# - privileged-container-constraint.yaml
+- privileged-container-constraint.yaml
