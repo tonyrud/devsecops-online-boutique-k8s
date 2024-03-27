@@ -33,13 +33,13 @@ spec:
         env:
         - name: PORT
           value: "9555"
-        # resources:
-          # requests:
-            # cpu: 200m
-            # memory: 180Mi
-          # limits:
-            # cpu: 300m
-            # memory: 300Mi
+        resources:
+          requests:
+            cpu: 200m
+            memory: 180Mi
+          limits:
+            cpu: 300m
+            memory: 300Mi
         readinessProbe:
           initialDelaySeconds: 20
           periodSeconds: 15
@@ -56,7 +56,7 @@ kind: Service
 metadata:
   name: adservice
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: adservice
   ports:
