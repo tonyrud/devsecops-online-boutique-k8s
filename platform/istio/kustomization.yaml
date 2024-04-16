@@ -4,3 +4,4 @@ resources:
 - gateway.yaml
 - istio-external-secret.yaml
 - mesh-peer-authentication.yaml
+- frontend-authorization-policy.yaml
