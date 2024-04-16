@@ -4,9 +4,7 @@ metadata:
   name: frontend-policy
   namespace: online-boutique
 spec:
-  selector:
-    matchLabels:
-      app: frontend
+  
   action: DENY
   rules:
   - from:
