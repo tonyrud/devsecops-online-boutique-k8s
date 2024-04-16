@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: test-policy
+  namespace: online-boutique
+spec:
+  action: DENY
+  rules:
+  - from:
+    - source:
+        namespaces: ["online-boutique"]
+    to:
+    - operation:
+        ports: ["9555"]
