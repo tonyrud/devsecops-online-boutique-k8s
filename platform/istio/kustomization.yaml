@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - gateway.yaml
 - istio-external-secret.yaml
+- mesh-peer-authentication.yaml
