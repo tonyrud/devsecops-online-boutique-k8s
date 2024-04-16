@@ -5,3 +5,4 @@ resources:
 - istio-external-secret.yaml
 - mesh-peer-authentication.yaml
 - frontend-authorization-policy.yaml
+- argocd-authorization-policy.yaml
