@@ -6,6 +6,8 @@ name: Update ArgoCD Release Version
 on:
   workflow_dispatch:
     inputs:
+      distinct_id:
+        description: 'Sent by return-dispatch action. Not required.'
       service:
         description: 'Input a service name (e.g., gcr-adservice)'
         required: true
