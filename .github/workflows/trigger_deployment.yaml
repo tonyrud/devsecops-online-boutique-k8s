@@ -5,6 +5,13 @@ name: Update ArgoCD Release Version
 
 on:
   workflow_dispatch:
+    inputs:
+      service:
+        description: 'Input a service name (e.g., gcr-adservice)'
+        required: true
+      version:
+        description: 'Input a version (e.g., v1.0.0)'
+        required: true
     
 jobs:
   release_version_trigger:
@@ -17,25 +24,25 @@ jobs:
       - name: Echo Service Name & Version
         run: |
           # Parse the service name from the payload
-          service_name=${{ github.event.client_payload.service }}
+          service_name=${{ inputs.service }}
           echo "Service Name: $service_name"
 
           # Parse the version name from the payload
-          version=${{ github.event.client_payload.version }}
+          version=${{ inputs.version }}
           echo "Version: $version"
       
       - name: Update Image in Kustomization
         run: |
-          service_name=${{ github.event.client_payload.service }}
-          version=${{ github.event.client_payload.version }}
+          service_name=${{ inputs.service }}
+          version=${{ inputs.version }}
 
           # Update the image in the kustomization.yaml file
           sh update_release_version.sh $service_name $version
 
       - name: Commit Changes
         run: |
-          service_name=${{ github.event.client_payload.service }}
-          version=${{ github.event.client_payload.version }}
+          service_name=${{ inputs.service }}
+          version=${{ inputs.version }}
 
           git config --global user.name "Continuous Deployment Bot"
           git config --global user.email "cd-bot@users.noreply.github.com"
