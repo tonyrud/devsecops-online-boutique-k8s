@@ -1,4 +1,4 @@
-name: Update ArgoCD Release Version
+name: Update Release Version
 # Trigger the workflow on repository_dispatch event
 # This happens from new images from app repo: 
 # https://github.com/tonyrud/devsecops-online-boutique-app
@@ -17,7 +17,7 @@ on:
     
 jobs:
   release_version_trigger:
-    name: 'Update ArgoCD Release Version: ${{ github.event.inputs.service }} to ${{ github.event.inputs.version }}'
+    name: 'Update ${{ github.event.inputs.service }} to ${{ github.event.inputs.version }}'
     runs-on: ubuntu-latest
 
     steps:
@@ -34,10 +34,10 @@ jobs:
           version=${{ inputs.version }}
           echo "Version: $version"
       
-      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+      - name: Distinct ID ${{ github.event.inputs.distinct_id }}
         run: echo ${{ github.event.inputs.distinct_id }}
 
-      - name: Update Image in Kustomization
+      - name: Update image tag in dev/kustomization.yaml
         run: |
           service_name=${{ inputs.service }}
           version=${{ inputs.version }}
