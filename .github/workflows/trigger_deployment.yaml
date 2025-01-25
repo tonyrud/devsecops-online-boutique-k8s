@@ -1,25 +1,45 @@
-name: My Target Workflow
+name: Update ArgoCD Release Version
+# Trigger the workflow on repository_dispatch event
+# This happens from new images from app repo: 
+# https://github.com/tonyrud/devsecops-online-boutique-app
 
 on:
-  repository_dispatch:
-    types: [trigger-workflow]
+  workflow_dispatch:
     
 jobs:
-  build:
+  release_version_trigger:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.client_payload.sha }}
-
-      - name: Extract Service Name & Version
+      
+      - name: Echo Service Name & Version
         run: |
           # Parse the service name from the payload
           service_name=${{ github.event.client_payload.service }}
           echo "Service Name: $service_name"
-          
+
           # Parse the version name from the payload
           version=${{ github.event.client_payload.version }}
           echo "Version: $version"
+      
+      - name: Update Image in Kustomization
+        run: |
+          service_name=${{ github.event.client_payload.service }}
+          version=${{ github.event.client_payload.version }}
+
+          # Update the image in the kustomization.yaml file
+          sh update_release_version.sh $service_name $version
+
+      - name: Commit Changes
+        run: |
+          service_name=${{ github.event.client_payload.service }}
+          version=${{ github.event.client_payload.version }}
+
+          git config --global user.name "Continuous Deployment Bot"
+          git config --global user.email "cd-bot@users.noreply.github.com"
+
+          git add overlays/dev/kustomization.yaml
+          git commit -m "Update $service_name to $version"
+          git push
