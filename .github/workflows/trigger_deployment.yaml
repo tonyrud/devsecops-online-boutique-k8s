@@ -17,6 +17,7 @@ on:
     
 jobs:
   release_version_trigger:
+    name: 'Update ArgoCD Release Version: ${{ github.event.inputs.service }} to ${{ github.event.inputs.version }}'
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +34,9 @@ jobs:
           version=${{ inputs.version }}
           echo "Version: $version"
       
+      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
+
       - name: Update Image in Kustomization
         run: |
           service_name=${{ inputs.service }}
