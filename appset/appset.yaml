@@ -28,7 +28,7 @@ spec:
         targetRevision: '{{.head_sha}}'
         path: overlays/preview
         kustomize:
-          namespace: 'preview-{{.branch}}'
+          namespace: 'preview-{{.branch}}-{{.number}}'
           images:
           - 'gcr.io/google-samples/microservices-demo/adservice:v0.8.1'
       project: default
@@ -40,4 +40,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'simple-deployment-{{branch}}-{{number}}'
+        namespace: 'preview-{{.branch}}-{{.number}}'
