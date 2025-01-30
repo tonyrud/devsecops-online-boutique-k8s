@@ -21,14 +21,14 @@ spec:
       requeueAfterSeconds: 15
   template:      
     metadata:
-      name: 'myapp-{{.branch}}-{{.number}}'
+      name: '{{.author}}-pr-{{.number}}'
     spec:
       source:
         repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s
         targetRevision: '{{.head_sha}}'
         path: overlays/preview
         kustomize:
-          namespace: 'preview-{{.branch}}-{{.number}}'
+          namespace: '{{.author}}-pr-{{.number}}'
           images:
           - 'gcr.io/google-samples/microservices-demo/adservice:v0.8.1'
       project: default
@@ -40,4 +40,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'preview-{{.branch}}-{{.number}}'
+        namespace: '{{.author}}-pr-{{.number}}'
