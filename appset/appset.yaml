@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: preview-environment
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - pullRequest:
+      github:
+        owner: tonyrud
+        repo: devsecops-online-boutique-k8s
+        # Reference to a Secret containing an access token. (optional)
+        tokenRef:
+          secretName: gitops-k8s-repo
+          key: password
+        # Labels will filter the PRs that you want to target. (optional)
+        labels:
+        - preview
+      requeueAfterSeconds: 15
+  template:      
+    metadata:
+      name: 'myapp-{{.branch}}-{{.number}}'
+    spec:
+      source:
+        repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s
+        targetRevision: '{{.head_sha}}'
+        path: overlays/preview
+        kustomize:
+          namspace: 'preview-{{.branch}}'
+          images:
+          - 'ghcr.io/myorg/myrepo:{{.author}}-{{.head_sha}}'
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true  
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'simple-deployment-{{branch}}-{{number}}'
