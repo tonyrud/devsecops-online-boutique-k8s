@@ -28,7 +28,7 @@ spec:
         targetRevision: '{{.head_sha}}'
         path: overlays/preview
         kustomize:
-          namspace: 'preview-{{.branch}}'
+          namespace: 'preview-{{.branch}}'
           images:
           - 'gcr.io/google-samples/microservices-demo/adservice:v0.8.1'
       project: default
