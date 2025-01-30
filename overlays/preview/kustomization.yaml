@@ -1,0 +1,74 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: preview
+resources:
+  - ../../base_preview
+images:
+  - name: gcr-adservice
+    newName: gcr.io/google-samples/microservices-demo/adservice
+    newTag: v0.8.1
+
+# Example; remove the following deployments from the preview environment
+# for testing purposes
+# patches:
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: cartservice
+
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: checkoutservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: currencyservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: emailservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: frontend
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: paymentservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: productcatalogservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: recommendationservice
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: redis-cart
+# - patch: |-
+#     $patch: delete
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     metadata:
+#       name: shippingservice
