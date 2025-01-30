@@ -30,7 +30,7 @@ spec:
         kustomize:
           namspace: 'preview-{{.branch}}'
           images:
-          - 'ghcr.io/myorg/myrepo:{{.author}}-{{.head_sha}}'
+          - 'gcr.io/google-samples/microservices-demo/adservice:v0.8.1'
       project: default
       syncPolicy:
         syncOptions:
