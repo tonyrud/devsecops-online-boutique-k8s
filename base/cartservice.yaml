@@ -21,12 +21,11 @@ spec:
       containers:
       - name: server
         securityContext:
-          allowPrivilegeEscalation: false
+          allowPrivilegeEscalation: true
           capabilities:
             drop:
               - ALL
-          privileged: false
-          readOnlyRootFilesystem: true
+          privileged: true
         image: gcr-cartservice
         ports:
         - containerPort: 7070
