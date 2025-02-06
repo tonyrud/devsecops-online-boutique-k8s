@@ -6,4 +6,4 @@ resources:
 - privileged-container-constraint.yaml
 # these need created after constraints
 - block-nodeport-services.yaml
-# - block-privileged-containers.yaml
+- block-privileged-containers.yaml
