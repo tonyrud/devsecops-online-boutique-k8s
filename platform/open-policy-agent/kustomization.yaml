@@ -4,6 +4,6 @@ resources:
 # these need created first
 - block-nodeport-services.yaml
 - block-privileged-containers.yaml
-# these need created before constraints that use them!
+# these need created after constraints that use them!
 - nodeport-constraint.yaml
-# - privileged-container-constraint.yaml
+- privileged-container-constraint.yaml
