@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: preview
 resources:
   - ../../base_preview
+  - ../../components
 images:
   - name: gcr-adservice
     newName: gcr.io/google-samples/microservices-demo/adservice
