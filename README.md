@@ -18,6 +18,8 @@ These are controlled by an appset in `appset/appset.yaml`. Pull Requests with th
 
 ## External Secrets
 
+Using [ExternalSecrets](https://external-secrets.io/main/introduction/overview/)
+
 Note, that some secrets commands are added to [Terraform repo README](https://github.com/tonyrud/12_iac_with_terraform)
 
 Get the ExternalSecret
@@ -36,4 +38,10 @@ Get decoded Secret value
 
 ```bash
 kubectl get secret -n online-boutique stripe-api-key -o jsonpath="{.data.stripe-key}" | base64 -d
+```
+
+Check for it in the actual pod
+
+```bash
+kubectl exec -it $(kubectl -n online-boutique get pods --selector=app=paymentservice -o name) -- env | grep STRIPE
 ```

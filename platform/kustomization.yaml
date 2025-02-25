@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - open-policy-agent
 - external-secrets
-# - istio
+- istio
