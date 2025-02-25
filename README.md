@@ -45,3 +45,9 @@ Check for it in the actual pod
 ```bash
 kubectl exec -it $(kubectl -n online-boutique get pods --selector=app=paymentservice -o name) -- env | grep STRIPE
 ```
+
+## Adding TLS Certificate
+
+```bash
+openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.twnn.com"
+```
