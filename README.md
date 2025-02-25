@@ -46,8 +46,26 @@ Check for it in the actual pod
 kubectl exec -it $(kubectl -n online-boutique get pods --selector=app=paymentservice -o name) -- env | grep STRIPE
 ```
 
-## Adding TLS Certificate
+## Istio
+
+**NOTE: after adding sidecar injection, you must restart all the pods!**
+
+```bash
+kubectl rollout restart deployments
+```
+
+### Adding TLS Certificate
+
+Add these files to AWS Secrets Manager
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.twnn.com"
+```
+
+### itsioctl
+
+Get svc outputs
+
+```bash
+istioctl x describe svc frontend -n online-boutique
 ```
