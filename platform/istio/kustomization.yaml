@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - gateway.yaml
 - istio-external-secret.yaml
-# - mesh-peer-authentication.yaml
+- mesh-peer-authentication.yaml
 # - frontend-authorization-policy.yaml
 # - argocd-authorization-policy.yaml

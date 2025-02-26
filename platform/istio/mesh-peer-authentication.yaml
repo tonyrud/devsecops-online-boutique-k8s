@@ -5,4 +5,4 @@ metadata:
   namespace: online-boutique
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
