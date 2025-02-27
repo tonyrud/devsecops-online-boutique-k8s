@@ -62,7 +62,27 @@ Add these files to AWS Secrets Manager
 openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.twnn.com"
 ```
 
-### itsioctl
+### Inspect CMDS
+
+Check the status of the install
+
+```bash
+helm status istiod -n istio-system && helm status istio-ingress -n istio-ingress
+```
+
+```bash
+helm ls -n istio-ingress && helm ls -n istio-system
+```
+
+```bash
+kubectl get Gateway,VirtualService
+```
+
+Check the peer authentication mesh is added
+
+```bash
+kubectl get peerauthentication --all-namespaces
+```
 
 Get svc outputs
 
