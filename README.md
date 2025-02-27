@@ -76,6 +76,12 @@ curl frontend service
 curl -i frontend:80
 ```
 
+curl argocd in separate namespace
+
+```bash
+curl -I argocd-server.argocd:80
+```
+
 ### Inspect CMDS
 
 Check the status of the install
