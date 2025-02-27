@@ -62,6 +62,20 @@ Add these files to AWS Secrets Manager
 openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.twnn.com"
 ```
 
+### Testing curl cmds
+
+Start a curl container
+
+```bash
+kubectl run -it --image curlimages/curl -n online-boutique --restart=Never mypod -- sh
+```
+
+curl frontend service
+
+```bash
+curl -i frontend:80
+```
+
 ### Inspect CMDS
 
 Check the status of the install
@@ -75,7 +89,7 @@ helm ls -n istio-ingress && helm ls -n istio-system
 ```
 
 ```bash
-kubectl get Gateway,VirtualService
+kubectl get Gateway,VirtualService --all-namespaces
 ```
 
 Check the peer authentication mesh is added
