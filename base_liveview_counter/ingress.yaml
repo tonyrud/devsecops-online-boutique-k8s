@@ -13,4 +13,4 @@ spec:
           service:
             name: counter
             port:
-              number: 4000
+              number: 80

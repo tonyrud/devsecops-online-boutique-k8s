@@ -4,8 +4,8 @@ metadata:
   name: counter
 spec:
   ports:
-  - name: 4000-elixir
-    port: 4000
+  - name: http
+    port: 80
     protocol: TCP
     targetPort: 4000
   selector:
