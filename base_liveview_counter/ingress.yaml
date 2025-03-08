@@ -4,7 +4,7 @@ metadata:
   name: counter-ingress
 spec:
   rules:
-  - host: 
+  - host: dev.tonyrudny.com
     http:
       paths:
       - path: /
