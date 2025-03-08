@@ -24,7 +24,7 @@ spec:
         app: counter
     spec:
       containers:
-        name: liveview-counter
+      - name: liveview-counter
         image: phoenix-liveview-counter
         ports:
         - containerPort: 4000
