@@ -25,6 +25,7 @@ spec:
     spec:
       containers:
       - name: liveview-counter
+        # this is the value that's replaced in overlays
         image: phoenix-liveview-counter
         ports:
         - containerPort: 4000

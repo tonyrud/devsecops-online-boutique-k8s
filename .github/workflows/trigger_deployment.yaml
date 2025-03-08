@@ -8,16 +8,16 @@ on:
     inputs:
       distinct_id:
         description: 'Sent by return-dispatch action. Not required.'
-      service:
+      image_name:
         description: 'Input a service name (e.g., gcr-adservice)'
         required: true
       version:
-        description: 'Input a version (e.g., v1.0.0)'
+        description: 'Input a version (e.g., v1.0.0 or commit SHA)'
         required: true
     
 jobs:
   release_version_trigger:
-    name: 'Update ${{ github.event.inputs.service }} to ${{ github.event.inputs.version }}'
+    name: 'Update ${{ github.event.inputs.image_name }} to ${{ github.event.inputs.version }}'
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +27,8 @@ jobs:
       - name: Echo Service Name & Version
         run: |
           # Parse the service name from the payload
-          service_name=${{ inputs.service }}
-          echo "Service Name: $service_name"
+          image_name=${{ inputs.image_name }}
+          echo "Service Name: $image_name"
 
           # Parse the version name from the payload
           version=${{ inputs.version }}
@@ -39,20 +39,20 @@ jobs:
 
       - name: Update image tag in dev/kustomization.yaml
         run: |
-          service_name=${{ inputs.service }}
+          image_name=${{ inputs.image_name }}
           version=${{ inputs.version }}
 
           # Update the image in the kustomization.yaml file
-          sh update_release_version.sh $service_name $version
+          sh update_release_version.sh $image_name $version
 
       - name: Commit Changes
         run: |
-          service_name=${{ inputs.service }}
+          image_name=${{ inputs.image_name }}
           version=${{ inputs.version }}
 
           git config --global user.name "Continuous Deployment Bot"
           git config --global user.email "cd-bot@users.noreply.github.com"
 
-          git add overlays/dev/kustomization.yaml
-          git commit -m "Update $service_name to $version"
+          git add --all
+          git commit -m "Update $image_name to $version"
           git push
