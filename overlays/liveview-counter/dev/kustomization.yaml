@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: phoenix-liveview-counter-tutorial
+namespace: liveview-counter-dev
 resources:
   - ../../../base_liveview_counter
 images:
@@ -12,10 +12,8 @@ replicas:
     count: 2
 
 patches:
-  - target:
-      kind: Ingress
-      name: counter-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: dev.tonyrudny.com
+- path: ingress-patches.yaml
+  target:
+    version: v1
+    kind: Ingress
+    name: counter-ingress
