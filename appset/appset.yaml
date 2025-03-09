@@ -17,20 +17,20 @@ spec:
           key: password
         # Labels will filter the PRs that you want to target. (optional)
         filters:
-        - branchMatch: "prevew/*"
+        - branchMatch: "preview/*"
         # labels:
         # - preview-environment
       requeueAfterSeconds: 15
   template:      
     metadata:
-      name: '{{.author}}-pr-{{.number}}'
+      name: '{{.branch}}'
     spec:
       source:
         repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s
         targetRevision: '{{.head_sha}}'
         path: overlays/liveview-counter/preview-environments
         kustomize:
-          namespace: '{{.author}}-pr-{{.number}}'
+          namespace: '{{.branch}}'
           images:
           - '326347646211.dkr.ecr.us-east-2.amazonaws.com/phoenix-liveview-counter-tutorial:pr-6'
       project: default
