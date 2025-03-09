@@ -10,3 +10,12 @@ images:
 replicas:
   - name: counter
     count: 2
+
+patches:
+  - target:
+      kind: Ingress
+      name: counter-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: dev.tonyrudny.com

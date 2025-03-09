@@ -4,7 +4,7 @@ metadata:
   name: counter-ingress
 spec:
   rules:
-  - host: dev.tonyrudny.com
+  - host: replaceme.with.patch.overlay
     http:
       paths:
       - path: /

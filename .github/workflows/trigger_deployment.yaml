@@ -43,7 +43,7 @@ jobs:
           version=${{ inputs.version }}
 
           # Update the image in the kustomization.yaml file
-          sh update_image_counter_version.sh $image_name $version
+          sh scripts/update_image_counter_version.sh $image_name $version
 
       - name: Commit Changes
         run: |
