@@ -10,10 +10,14 @@ images:
 replicas:
   - name: counter
     count: 2
-
+configMapGenerator:
+  - name: counter-configmap
+    behavior: merge
+    envs:
+      - ./.env
 patches:
-- path: ingress-patches.yaml
-  target:
-    version: v1
-    kind: Ingress
-    name: counter-ingress
+  - path: ingress-patches.yaml
+    target:
+      version: v1
+      kind: Ingress
+      name: counter-ingress

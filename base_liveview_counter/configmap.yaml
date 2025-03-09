@@ -1,9 +1,7 @@
 apiVersion: v1
-data:
-  PHX_HOST: dev.tonyrudny.com
-  SECRET_KEY_BASE: szzunmHPP70+4jvCm536EpznMBegDO46vD6OqaWHpZ3n0hmRpgxYkBPRjGkTEYa4
-  ERL_AFLAGS: -kernel shell_history enabled
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   name: counter-configmap
+# default envs
+data:
+  ERL_AFLAGS: -kernel shell_history enabled
