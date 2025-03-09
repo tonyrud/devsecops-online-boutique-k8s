@@ -32,7 +32,7 @@ spec:
         kustomize:
           namespace: '{{.author}}-pr-{{.number}}'
           images:
-          - 326347646211.dkr.ecr.us-east-2.amazonaws.com/phoenix-liveview-counter-tutorial:pr-6
+          - '326347646211.dkr.ecr.us-east-2.amazonaws.com/phoenix-liveview-counter-tutorial:pr-6'
       project: default
       syncPolicy:
         syncOptions:
