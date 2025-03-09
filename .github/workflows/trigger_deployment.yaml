@@ -2,6 +2,8 @@ name: Update Release Version
 # Trigger the workflow on repository_dispatch event
 # This happens from new images from app repo: 
 # https://github.com/tonyrud/devsecops-online-boutique-app
+# Also:
+# https://github.com/tonyrud/elixir-distributed-playground/blob/main/.github/workflows/deploy.yml
 
 on:
   workflow_dispatch:

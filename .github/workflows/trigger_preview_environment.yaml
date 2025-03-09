@@ -1,0 +1,37 @@
+name: Create Preview Environment
+# https://github.com/tonyrud/elixir-distributed-playground/blob/main/.github/workflows/deploy.yml
+
+on:
+  workflow_dispatch:
+    inputs:
+      distinct_id:
+        description: 'Sent by return-dispatch action(Optional).'
+      branch_name:
+        description: 'Input a branch name for the preview environment'
+        required: true
+    
+jobs:
+  preview_env_trigger:
+    name: 'Creating preview: ${{ github.event.inputs.branch_name }}'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Create new files for the preview environment
+        run: |
+          branch_name=${{ inputs.branch_name }}
+
+          sh scripts/create_preview_env.sh $branch_name
+
+      - name: Commit Changes
+        run: |
+          branch_name=${{ inputs.branch_name }}
+
+          git config --global user.name "Continuous Deployment Bot"
+          git config --global user.email "cd-bot@users.noreply.github.com"
+
+          git add .
+          git commit -m "Preview Env: $branch_name"
+          git push
