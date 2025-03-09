@@ -17,7 +17,7 @@ spec:
           key: password
         # Labels will filter the PRs that you want to target. (optional)
         filters:
-        - branchMatch: "preview/*"
+        - branchMatch: "preview*"
         # labels:
         # - preview-environment
       requeueAfterSeconds: 15
