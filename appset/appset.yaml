@@ -16,8 +16,10 @@ spec:
           secretName: gitops-k8s-repo
           key: password
         # Labels will filter the PRs that you want to target. (optional)
-        labels:
-        - preview-environment
+        filters:
+        - branchMatch: "prevew/*"
+        # labels:
+        # - preview-environment
       requeueAfterSeconds: 15
   template:      
     metadata:
