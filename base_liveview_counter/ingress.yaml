@@ -2,6 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: counter-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    # set this for single load balancer across ingress resources
+    alb.ingress.kubernetes.io/group.name: my-group
 spec:
   rules:
   - host: replaceme.with.patch.overlay
