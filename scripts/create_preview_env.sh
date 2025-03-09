@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # IMAGE_NAME=${1?Error: no service name given}
 BRANCH_NAME=${1?Error: no branch name given}
 # VERSION=${2?Error: no version given}
@@ -23,8 +25,5 @@ yq -i "(.namespace) = \"$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
 
 # set ENVs
 # replaces dev.tonyrudny.com with $INGRESS_HOST
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
-else
-  sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
-fi
+# sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
+sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
