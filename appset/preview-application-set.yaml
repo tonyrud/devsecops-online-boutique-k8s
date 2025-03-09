@@ -27,6 +27,7 @@ spec:
         path: '{{.path.path}}'
       
       # Destination cluster and namespace to deploy the application
+      # uses the last path which is linked to the branch name
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{index .path.segments 2}}'
