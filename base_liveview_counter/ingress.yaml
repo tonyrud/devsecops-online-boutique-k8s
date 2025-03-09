@@ -9,6 +9,7 @@ metadata:
     # set this for single load balancer across ingress resources
     alb.ingress.kubernetes.io/group.name: my-group
 spec:
+  ingressClassName: alb
   rules:
   - host: replaceme.with.patch.overlay
     http:
