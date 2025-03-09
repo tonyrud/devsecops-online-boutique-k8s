@@ -16,8 +16,10 @@ spec:
           secretName: gitops-k8s-repo
           key: password
         # Labels will filter the PRs that you want to target. (optional)
-        labels:
-        - preview-environment
+        filters:
+        - branchMatch: "prevew/*"
+        # labels:
+        # - preview-environment
       requeueAfterSeconds: 15
   template:      
     metadata:
@@ -26,11 +28,11 @@ spec:
       source:
         repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s
         targetRevision: '{{.head_sha}}'
-        path: overlays/preview
+        path: overlays/liveview-counter/preview-environments
         kustomize:
           namespace: '{{.author}}-pr-{{.number}}'
           images:
-          - 'gcr.io/google-samples/microservices-demo/adservice:v0.8.1'
+          - 326347646211.dkr.ecr.us-east-2.amazonaws.com/phoenix-liveview-counter-tutorial:pr-6
       project: default
       syncPolicy:
         syncOptions:
@@ -40,4 +42,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.author}}-pr-{{.number}}'
+        namespace: default
