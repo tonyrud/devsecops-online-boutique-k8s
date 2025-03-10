@@ -9,6 +9,9 @@ on:
       branch_name:
         description: 'Input a branch name for the preview environment'
         required: true
+      image_tag:
+        description: 'Image tag for the preview environment'
+        required: true
     
 jobs:
   preview_env_trigger:
@@ -22,8 +25,9 @@ jobs:
       - name: Create new files for the preview environment
         run: |
           branch_name=${{ inputs.branch_name }}
+          image_tag=${{ inputs.image_tag }}
 
-          sh scripts/create_preview_env.sh $branch_name
+          sh scripts/create_preview_env.sh $branch_name $image_tag
 
       - name: Commit Changes
         run: |

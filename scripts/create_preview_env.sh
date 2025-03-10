@@ -2,9 +2,8 @@
 
 set -e
 
-# IMAGE_NAME=${1?Error: no service name given}
 BRANCH_NAME=${1?Error: no branch name given}
-# VERSION=${2?Error: no version given}
+VERSION=${2?Error: no version given}
 
 PREVIEW_DIR=overlays/liveview-counter/$BRANCH_NAME
 
@@ -13,7 +12,7 @@ mkdir -p $PREVIEW_DIR
 cp -R overlays/liveview-counter/dev/. $PREVIEW_DIR
 
 # update image tag
-yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"preview-$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
+yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"preview-$VERSION\"" $PREVIEW_DIR/kustomization.yaml
 
 INGRESS_HOST="$BRANCH_NAME.tonyrudny.com"
 
