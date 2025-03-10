@@ -13,7 +13,7 @@ mkdir -p $PREVIEW_DIR
 cp -R overlays/liveview-counter/dev/. $PREVIEW_DIR
 
 # update image tag
-yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
+yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"preview-$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
 
 INGRESS_HOST="$BRANCH_NAME.tonyrudny.com"
 
