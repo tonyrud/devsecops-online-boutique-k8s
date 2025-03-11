@@ -12,10 +12,11 @@ spec:
       repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s.git
       revision: HEAD
       directories:
-      - path: overlays/liveview-counter/*
+      # Pattern: apps/<app-name>/envs/<env-name>/<namespace>
+      - path: apps/*/envs/dev/*
   template:      
     metadata:
-      name: '{{index .path.segments 1}}-{{index .path.segments 2}}'     
+      name: '{{index .path.segments 1}}-{{index .path.segments 4}}'     
     spec:
       # The project the application belongs to.
       project: default
