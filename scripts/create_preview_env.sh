@@ -4,15 +4,15 @@ set -e
 
 BRANCH_NAME=${1?Error: no branch name given}
 VERSION=${2?Error: no version given}
-
-PREVIEW_DIR=overlays/liveview-counter/$BRANCH_NAME
+BASE_DIR=apps/liveview_counter/envs/dev
+PREVIEW_DIR=apps/liveview_counter/envs/dev/$BRANCH_NAME
 
 mkdir -p $PREVIEW_DIR
 
-cp -R overlays/liveview-counter/dev/. $PREVIEW_DIR
+cp -R apps/liveview_counter/envs/dev/dev/. $PREVIEW_DIR
 
 # update image tag
-yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"preview-$VERSION\"" $PREVIEW_DIR/kustomization.yaml
+yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \"$VERSION\"" $PREVIEW_DIR/kustomization.yaml
 
 INGRESS_HOST="$BRANCH_NAME.tonyrudny.com"
 
@@ -24,5 +24,5 @@ yq -i "(.namespace) = \"$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
 
 # set ENVs
 # replaces dev.tonyrudny.com with $INGRESS_HOST
-# sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
-sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
+sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
+# sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env

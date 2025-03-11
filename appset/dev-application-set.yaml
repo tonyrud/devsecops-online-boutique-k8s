@@ -12,10 +12,11 @@ spec:
       repoURL: https://github.com/tonyrud/devsecops-online-boutique-k8s.git
       revision: HEAD
       directories:
-      # Pattern: apps/<app-name>/envs/<env-name>/<namespace>
+      # Pattern: apps/<app-name>/envs/<cluster>/<namespace>
       - path: apps/*/envs/dev/*
   template:      
     metadata:
+      # <application>-<namespace>
       name: '{{index .path.segments 1}}-{{index .path.segments 4}}'     
     spec:
       # The project the application belongs to.
