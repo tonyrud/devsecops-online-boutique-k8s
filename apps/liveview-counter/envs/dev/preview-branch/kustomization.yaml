@@ -6,7 +6,7 @@ resources:
 images:
   - name: phoenix-liveview-counter
     newName: 326347646211.dkr.ecr.us-east-2.amazonaws.com/phoenix-liveview-counter-tutorial
-    newTag: preview-a0211a5ade4e301930a734e8a718196a7853f494
+    newTag: preview-df3954cb06592d81c12ca2c8ccd6aec6bf1a10cd
 replicas:
   - name: counter
     count: 2
