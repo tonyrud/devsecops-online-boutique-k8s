@@ -109,3 +109,12 @@ Get svc outputs
 ```bash
 istioctl x describe svc frontend -n online-boutique
 ```
+
+## TODOs
+
+- Add external secrets to Phx app
+- Add access to ArgoCD via Ingress
+  - `helm status argocd -n argocd` to see ingress params
+- Add tls certs for Ingress Load Balancer
+- Access counter app via Istio Gateway
+- [Add DefectDojo to cluster](https://github.com/cristiano-corrado/django-DefectDojo/blob/master/KUBERNETES.md#kubernetes-production)
