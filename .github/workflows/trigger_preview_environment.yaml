@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Required for the return-dispatch action
+      - name: Distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
+            
       - name: Checkout code
         uses: actions/checkout@v4
       

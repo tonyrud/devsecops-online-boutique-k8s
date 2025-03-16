@@ -23,8 +23,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Required for the return-dispatch action
+      - name: Distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
+
       - name: Checkout code
         uses: actions/checkout@v4
+
+        
       
       - name: Echo Service Name & Version
         run: |
@@ -36,8 +42,6 @@ jobs:
           version=${{ inputs.version }}
           echo "Version: $version"
       
-      - name: Distinct ID ${{ github.event.inputs.distinct_id }}
-        run: echo ${{ github.event.inputs.distinct_id }}
 
       - name: Update image tag in dev/kustomization.yaml
         run: |
