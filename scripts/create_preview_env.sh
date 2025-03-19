@@ -28,4 +28,7 @@ yq -i "(.namespace) = \"$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
 # THIS IS FOR MacOS:
 # sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
 
-sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
+case "$OSTYPE" in
+  darwin*)  sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env;; 
+  *)        sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env ;;
+esac

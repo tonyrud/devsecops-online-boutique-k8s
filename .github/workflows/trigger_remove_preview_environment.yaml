@@ -1,21 +1,17 @@
-name: Create Preview Environment
+name: Remove Preview Environment
 # https://github.com/tonyrud/elixir-distributed-playground/blob/main/.github/workflows/deploy.yml
 
 on:
   workflow_dispatch:
     inputs:
       distinct_id:
-        description: 'Sent by return-dispatch action(Optional).'
+        description: 'Sent by return-dispatch action(Optional)'
       branch_name:
-        description: 'Input a branch name for the preview environment'
+        description: 'Input a branch name for the preview environment to remove'
         required: true
-      image_tag:
-        description: 'Image tag for the preview environment'
-        required: true
-    
 jobs:
   preview_env_trigger:
-    name: 'Creating preview: ${{ github.event.inputs.branch_name }}'
+    name: 'Remove preview: ${{ github.event.inputs.branch_name }}'
     runs-on: ubuntu-latest
 
     steps:
@@ -26,12 +22,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Create new files for the preview environment
+      - name: Remove dir for the preview environment in /dev
         run: |
           branch_name=${{ inputs.branch_name }}
-          image_tag=${{ inputs.image_tag }}
-
-          sh scripts/create_preview_env.sh $branch_name $image_tag
+          rm -rf apps/liveview-counter/envs/dev/$branch_name
 
       - name: Commit Changes
         run: |
@@ -41,5 +35,5 @@ jobs:
           git config --global user.email "cd-bot@users.noreply.github.com"
 
           git add .
-          git commit -m "preview env updated for app: $branch_name"
+          git commit -m "remove preview env: $branch_name"
           git push
