@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/rules/0/host
+  value: add-clustered-nodes.tonyrudny.com
