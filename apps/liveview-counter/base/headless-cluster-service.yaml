@@ -1,0 +1,10 @@
+# https://hexdocs.pm/libcluster/Cluster.Strategy.Kubernetes.DNS.html#module-setup
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-headless
+spec:
+  selector:
+    app: counter
+  type: ClusterIP
+  clusterIP: None

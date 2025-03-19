@@ -4,5 +4,6 @@ namespace: phoenix-liveview-counter-tutorial
 resources:
 - configmap.yaml
 - deployment.yaml
+- headless-cluster-service.yaml
 - ingress.yaml
 - service.yaml
