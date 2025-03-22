@@ -6,4 +6,5 @@ resources:
 - deployment.yaml
 - headless-cluster-service.yaml
 # - ingress.yaml
+- istio-virtual-service.yaml
 - service.yaml
