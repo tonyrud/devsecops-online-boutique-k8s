@@ -59,7 +59,7 @@ kubectl rollout restart deployments
 Add these files to AWS Secrets Manager
 
 ```bash
-openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.twnn.com"
+openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.<yourdomain>.com"
 ```
 
 ### Testing curl cmds
