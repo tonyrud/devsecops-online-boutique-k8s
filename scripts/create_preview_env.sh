@@ -17,18 +17,15 @@ yq -i "(.images[] | select(.name == \"phoenix-liveview-counter\") | .newTag) = \
 INGRESS_HOST="$BRANCH_NAME.tonyrudny.com"
 
 # update ingress host
-yq -i "(.[0] | select(.path == \"/spec/rules/0/host\") | .value) = \"$INGRESS_HOST\"" $PREVIEW_DIR/ingress-patches.yaml
+yq -i "(.[0] | select(.path == \"/spec/hosts/0\") | .value) = \"$INGRESS_HOST\"" $PREVIEW_DIR/istio-patches.yaml
 
 # update namespace
 yq -i "(.namespace) = \"$BRANCH_NAME\"" $PREVIEW_DIR/kustomization.yaml
 
 # set ENVs
 # replaces dev.tonyrudny.com with $INGRESS_HOST
-
-# THIS IS FOR MacOS:
-# sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env
-
 case "$OSTYPE" in
+  # required for MacOS
   darwin*)  sed -i '' "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env;; 
   *)        sed -i "s/dev.tonyrudny.com/$INGRESS_HOST/g" $PREVIEW_DIR/.env ;;
 esac

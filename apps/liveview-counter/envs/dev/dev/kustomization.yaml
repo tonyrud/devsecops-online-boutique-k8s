@@ -16,8 +16,7 @@ configMapGenerator:
     envs:
       - ./.env
 patches:
-  - path: ingress-patches.yaml
+  - path: istio-patches.yaml
     target:
-      version: v1
-      kind: Ingress
+      kind: VirtualService
       name: counter-ingress
