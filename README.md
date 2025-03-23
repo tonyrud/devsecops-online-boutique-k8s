@@ -58,6 +58,8 @@ kubectl rollout restart deployments
 
 Add these files to AWS Secrets Manager
 
+Secrets are created with Terraform
+
 ```bash
 openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.<yourdomain>.com"
 ```
@@ -102,6 +104,12 @@ Check the peer authentication mesh is added
 
 ```bash
 kubectl get peerauthentication --all-namespaces
+```
+
+Get Istio `VirtualService`
+
+```bash
+kubectl get virtualservice --all-namespaces
 ```
 
 Get svc outputs
