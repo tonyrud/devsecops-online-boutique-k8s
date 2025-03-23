@@ -64,6 +64,10 @@ Secrets are created with Terraform
 openssl req -x509 -newkey rsa:4096 -sha256 -days 30 -nodes -keyout key.pem -out cert.pem -subj "/CN=*.<yourdomain>.com"
 ```
 
+```bash
+istioctl pc secret -n istio-ingress <pod>
+```
+
 ### Testing curl cmds
 
 Start a curl container
